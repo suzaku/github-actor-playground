@@ -33,5 +33,7 @@ jobs:
       
       - name: Commit the changes
         run: |
+          git config --global user.email "testbot@flexport.com"
+          git config --global user.name "testbot"
           git commit -m "Update logs"
           git push
