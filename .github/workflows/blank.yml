@@ -29,7 +29,7 @@ jobs:
         run: echo ${{ github.actor }}
       
       - name: Update logs with date
-        run: date > logs
+        run: date >> logs
       
       - name: Commit the changes
         run: |
