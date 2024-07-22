@@ -41,13 +41,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          base: ${{ inputs.ref }}
           commit-message: "github-action[bot] Update logs"
           add-paths: "logs"
           branch: github-action/auto-merge
           delete-branch: true
           branch-suffix: random
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable Pull Request Automerge
         run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --auto 
         env:
