@@ -32,6 +32,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Update logs with date
         run: date >> logs
       
@@ -39,6 +41,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
+          base: ${{ inputs.ref }}
           commit-message: "github-action[bot] Update logs"
           add-paths: "logs"
           branch: github-action/auto-merge
