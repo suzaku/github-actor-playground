@@ -47,7 +47,12 @@ jobs:
           branch: github-action/auto-merge
           delete-branch: true
           branch-suffix: random
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Enable Pull Request Automerge
         run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --auto 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Approve the PR
         run: gh pr review "${{ steps.cpr.outputs.pull-request-number }}" --aprove
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
