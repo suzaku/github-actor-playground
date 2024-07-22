@@ -26,12 +26,25 @@ jobs:
       - name: Who are you?
         run: echo ${{ github.actor }}
       
+  update-tag:
+    needs: build 
+
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Update logs with date
         run: date >> logs
       
-      - name: Commit the changes
-        run: |
-          git config --global user.email "testbot@flexport.com"
-          git config --global user.name "testbot"
-          git commit -am "Update logs"
-          git push
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "github-action[bot] Update logs"
+          add-paths: "logs"
+          branch: github-action/auto-merge
+          delete-branch: true
+          branch-suffix: random
+      - name: Enable Pull Request Automerge
+        run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --auto 
+      - name: Approve the PR
+        run: gh pr review "${{ steps.cpr.outputs.pull-request-number }}" --aprove
