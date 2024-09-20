@@ -23,7 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       
-      - uses: '.github/workflow/outsider.yaml'
+      - uses: '.github/workflows/outsider.yaml'
 
       - name: Who are you?
         run: echo ${{ github.actor }}
