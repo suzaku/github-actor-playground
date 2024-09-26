@@ -1,0 +1,19 @@
+name: test remote action call
+
+on:
+  workflow_call:
+    inputs:
+      MSG:
+        required: false
+        type: string
+        default: "Hello"
+
+
+jobs:
+  laugh:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Check ref
+        run: echo ${{ github.ref }}
