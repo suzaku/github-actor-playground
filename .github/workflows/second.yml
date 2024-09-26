@@ -22,4 +22,4 @@ jobs:
         run: echo ${{ github.actor }}
 
   test-action:
-    uses: suzaku/github-actor-playground/.github/workflows/action.yml@test-action
+    uses: suzaku/github-actor-playground/.github/workflows/action.yml@test-2
